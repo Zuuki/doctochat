@@ -1,0 +1,20 @@
+{
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "version": "1.0",
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "http://*/*", 
+    "https://*/*"
+  ],
+  "action": {
+        "default_popup": "popup.html"
+  },
+  "manifest_version": 3,
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
