@@ -1,15 +1,16 @@
 body {
-  background-color: #282c34;
+  background-color: #0596DE;
 }
 
 .App {
   text-align: center;
+  min-width: 512px;
   max-width: 728px;
   margin: 0 auto;
 }
 
 .App header {
-  background-color: #181717;
+  background-color: #171718;
   height: 10vh;
   min-height: 50px;
   color: white;
@@ -30,7 +31,7 @@ body {
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  background-color: rgb(40, 37, 53);
+  background-color: #0596DE;
 }
 
 main {
@@ -98,17 +99,6 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-
-
-.sign-in {
-  color: #282c34;
-  background: white;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-
-
 
 ul, li {
   text-align: left;
