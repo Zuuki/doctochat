@@ -6,16 +6,21 @@ var userMessages = [];
 function App() {
   return (
     <div className="App">
+      <header>
+        <h1> Docto ChatBot </h1>
+      </header>
+
       <section>
         <ChatRoom />
       </section>
+    
     </div>
   );
 }
 
 function ChatRoom() {
   const dummy = useRef();
-  //var userMessages = [];
+
   const [formValue, setFormValue] = useState('');
 
   const sendMessage = async (e) => {
@@ -42,7 +47,7 @@ function ChatRoom() {
 
       <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
 
-      <button type="submit" disabled={!formValue}>🕊️</button>
+      <button type="submit" disabled={!formValue}>sedundnes</button>
 
     </form>
   </>)
@@ -52,8 +57,7 @@ function ChatMessage(props) {
   const { text } = props.message;
 
   return (<>
-    <div className={`message bot`}>
-      <img src={'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+    <div className={`message sent`}>
       <p>{text}</p>
     </div>
   </>)
