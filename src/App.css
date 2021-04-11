@@ -108,7 +108,7 @@ button {
 }
 
 button:disabled {
-  opacity: 0.5;
+  opacity: 0.25;
   cursor: not-allowed;
 }
 
@@ -119,36 +119,32 @@ ul, li {
 
 p {
   max-width: 250px;
-  margin-bottom: 12px;
+  margin-bottom: 0px;
   line-height: 15px;
   padding: 10px 20px;
   border-radius: 25px;
   position: relative;
   color: white;
-  /*text-align: center;*/
 }
 
 .message {
-  /*display: flex;*/
   overflow-wrap: break-word;
 }
 
-
-/*.sent {
-  flex-direction: row-reverse;
-}*/
-
 .sent p {
   max-width: 240px;
+  background: #0596DE;
   color: white;
-  background: #6649b8;
-  /*align-self: flex-start;*/
   text-align: left;
+  float: left;
 }
 
 .received p {
+  max-width: 240px;
   background: #e5e5ea;
-  color: black;
+  color: #0596DE;
+  text-align: right;
+  float: right;
 }
 
 img {
