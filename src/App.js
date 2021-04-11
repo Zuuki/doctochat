@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
 
-var userMessages = [];
+var messages = [];
 
 function App() {
   return (
@@ -26,18 +26,28 @@ function ChatRoom() {
   const sendMessage = async (e) => {
     e.preventDefault();
 
-    await userMessages.push({
-      text: formValue
+    await messages.push({
+      text: formValue,
+      whom: "received"
     })
-    
+
+    /* TODO: Changer par la fonction qui va faire que le chat bot réponde */
+    messages.push({
+      text: "test",
+      whom: "sent"
+    })
+
+    /* Reset le champ d'entrée de texte à sa valeur par défaut */
     setFormValue('');
+
+    /* Scroll automatiquement au bas de la page quand un message est envoyé */
     dummy.current.scrollIntoView({ behavior: 'smooth' });
   }
 
   return (<>
     <main>
 
-      {userMessages && userMessages.map(msg => <ChatMessage message={msg} />)}
+      {messages && messages.map(msg => <ChatMessage message={msg} />)}
 
       <span ref={dummy}></span>
 
@@ -55,9 +65,10 @@ function ChatRoom() {
 
 function ChatMessage(props) {
   const { text } = props.message;
+  const { whom } = props.message;
 
   return (<>
-    <div className={`message sent`}>
+    <div className={`message ${whom}`}>
       <p>{text}</p>
     </div>
   </>)
