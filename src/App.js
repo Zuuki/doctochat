@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
+import { bot_answer, start } from './Bot.js';
 
 var messages = [];
 
@@ -32,8 +33,9 @@ function ChatRoom() {
     })
 
     /* TODO: Changer par la fonction qui va faire que le chat bot réponde */
+    
     messages.push({
-      text: "test",
+      text: bot_answer(formValue),
       whom: "sent"
     })
 
