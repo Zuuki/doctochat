@@ -1,0 +1,51 @@
+<mxfile host="app.diagrams.net" modified="2021-04-11T18:53:30.895Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36" etag="zx5jg8nmtU1ro4jjvZ7t" version="14.5.10" type="github">
+  <diagram id="Sc_AJG4eir59OqeeJXFH" name="Page-1">
+    <mxGraphModel dx="1730" dy="973" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="UD2YeZVai_hYx8fB8eos-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UD2YeZVai_hYx8fB8eos-1" target="UD2YeZVai_hYx8fB8eos-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UD2YeZVai_hYx8fB8eos-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="UD2YeZVai_hYx8fB8eos-1" target="UD2YeZVai_hYx8fB8eos-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UD2YeZVai_hYx8fB8eos-1" value="Menu" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1040" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UD2YeZVai_hYx8fB8eos-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UD2YeZVai_hYx8fB8eos-2" target="UD2YeZVai_hYx8fB8eos-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UD2YeZVai_hYx8fB8eos-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UD2YeZVai_hYx8fB8eos-2" target="UD2YeZVai_hYx8fB8eos-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UD2YeZVai_hYx8fB8eos-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UD2YeZVai_hYx8fB8eos-2" target="UD2YeZVai_hYx8fB8eos-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UD2YeZVai_hYx8fB8eos-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UD2YeZVai_hYx8fB8eos-2" target="UD2YeZVai_hYx8fB8eos-13">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="420" y="760" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UD2YeZVai_hYx8fB8eos-2" value="Pré Diagnostique" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="545" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UD2YeZVai_hYx8fB8eos-3" value="Export des rendez-vous en .ics" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="1040" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UD2YeZVai_hYx8fB8eos-6" value="Maux de tête" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="560" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="UD2YeZVai_hYx8fB8eos-8" value="Maux de ventre&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="640" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="UD2YeZVai_hYx8fB8eos-10" value="Mal a un membre" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="480" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="UD2YeZVai_hYx8fB8eos-13" value="Maux de bouches" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="720" width="120" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
