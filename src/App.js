@@ -1,14 +1,30 @@
-import React, { useRef, useState } from 'react';
 import './App.css';
 import { bot_answer, start } from './Bot.js';
+import doctoLogo from "./images/Doctolib_logo.png"
+import React, { useRef, useState } from 'react';
 
-var messages = [];
+
+/* Initialize the messages array with the welcoming message and the first choice" */
+var messages = [{
+  text: "Bienvenue sur le Chat Bot Doctolib",
+  whom: "sent"
+}, {
+  text: "Voulez-vous:",
+  whom: "sent"
+}, {
+  text: "- 1. Exporter votre calendrier de rendez-vous sous le format .ics ?",
+  whom: "sent"
+}, {
+  text: "- 2. Chercher quel practicien vous devriez consulter selon vos symptômes ?",
+  whom: "sent"
+}];
 
 function App() {
   return (
     <div className="App">
       <header>
-        <h1> Docto ChatBot </h1>
+        <img className="logo_doctolib" src={doctoLogo} alt="Logo Doctolib"></img>
+        <h1> Chat Bot </h1>
       </header>
 
       <section>
@@ -20,6 +36,7 @@ function App() {
 }
 
 function ChatRoom() {
+
   const dummy = useRef();
 
   const [formValue, setFormValue] = useState('');
@@ -27,13 +44,13 @@ function ChatRoom() {
   const sendMessage = async (e) => {
     e.preventDefault();
 
+    /* Attends un message de l'utilisateur et push le message dans l'array de messages */
     await messages.push({
       text: formValue,
       whom: "received"
     })
-
-    /* TODO: Changer par la fonction qui va faire que le chat bot réponde */
     
+    /* Push la réponse du bot dans l'array de messages */
     messages.push({
       text: bot_answer(formValue),
       whom: "sent"
@@ -57,7 +74,7 @@ function ChatRoom() {
 
     <form onSubmit={sendMessage}>
 
-      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
+      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Ecrivez ici" />
 
       <button type="submit" disabled={!formValue}>sedundnes</button>
 

@@ -1,7 +1,22 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Docto Chatbot",
+  "name": "Doctolib Chat Bot",
   "version": "1.0",
+  "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+          "16": "images/doctolib_logo.png",
+          "32": "images/doctolib_logo.png",
+          "48": "images/doctolib_logo.png",
+          "128": "images/doctolib_logo.png"
+        }
+  },
+  "icon": {
+    "16": "images/doctolib_logo.png",
+    "32": "images/doctolib_logo.png",
+    "48": "images/doctolib_logo.png",
+    "128": "images/doctolib_logo.png"
+  },
   "permissions": [
     "storage",
     "tabs",
@@ -9,9 +24,6 @@
     "http://*/*", 
     "https://*/*"
   ],
-  "action": {
-        "default_popup": "popup.html"
-  },
   "manifest_version": 3,
   "start_url": ".",
   "display": "standalone",

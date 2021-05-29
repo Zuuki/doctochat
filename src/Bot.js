@@ -6,5 +6,8 @@ export function bot_answer(text) {
 }
 
 export function start(messages) {
-    
+    messages.push({
+        text: "",
+        whom: "sent"
+    });
 }
