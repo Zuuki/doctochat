@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should matches snapshot 1`] = `
+<div
+  className="App"
+>
+  <header>
+    <img
+      alt="Logo Doctolib"
+      className="logo_doctolib"
+      src="Doctolib_logo.png"
+    />
+    <h1>
+       Chat Bot 
+    </h1>
+  </header>
+  <section>
+    <main>
+      <div
+        className="message sent"
+      >
+        <p>
+          Bienvenue sur le Chat Bot Doctolib
+        </p>
+      </div>
+      <div
+        className="message sent"
+      >
+        <p>
+          Voulez-vous:
+        </p>
+      </div>
+      <div
+        className="message sent"
+      >
+        <p>
+          - 1. Exporter votre calendrier de rendez-vous sous le format .ics ?
+        </p>
+      </div>
+      <div
+        className="message sent"
+      >
+        <p>
+          - 2. Chercher quel practicien vous devriez consulter selon vos symptômes ?
+        </p>
+      </div>
+      <span />
+    </main>
+    <form
+      onSubmit={[Function]}
+    >
+      <input
+        onChange={[Function]}
+        placeholder="Ecrivez ici"
+        value=""
+      />
+      <button
+        disabled={true}
+        type="submit"
+      >
+        sedundnes
+      </button>
+    </form>
+  </section>
+</div>
+`;
