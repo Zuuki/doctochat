@@ -1,5 +1,5 @@
 import './App.css';
-import { bot_answer, start } from './Bot.js';
+import { bot_answer } from './Bot.js';
 import doctoLogo from "./images/Doctolib_logo.png"
 import React, { useRef, useState } from 'react';
 
