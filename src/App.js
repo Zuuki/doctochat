@@ -1,6 +1,7 @@
 import './App.css';
 import { bot_answer } from './Bot.js';
 import doctoLogo from "./images/Doctolib_logo.png"
+import fileics from "./event.ics"
 import React, { useRef, useState } from 'react';
 
 
@@ -77,6 +78,8 @@ function ChatRoom() {
       <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Ecrivez ici" />
 
       <button type="submit" disabled={!formValue}>sedundnes</button>
+
+      <a href={fileics} className="icslink">generate ics file</a>
 
     </form>
   </>)
