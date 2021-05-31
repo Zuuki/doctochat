@@ -37,7 +37,7 @@ body {
 }
 
 button {
-  background-color: #282c34; /* Green */
+  background: linear-gradient(180deg, #ffc164 0%, #f59300 46.12%, #f59300 97.02%);
   border: none;
   color: white;
   cursor: pointer;
@@ -68,7 +68,7 @@ form {
 }
 
 form button {
-  background-color: rgb(56, 56, 143);
+  background-color: #FFFFFF;
   border-left: solid 2px black;
   border-right: solid 2px black;
   font-size: 0.75rem;
@@ -81,9 +81,10 @@ h1 {
 }
 
 input {
-  background: rgb(58, 58, 58);
+  background: #FFFFFF;
   border: 2px;
-  color: white;
+  color: #0596DE;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   outline: none;
