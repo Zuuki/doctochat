@@ -77,7 +77,7 @@ function ChatRoom() {
 
       <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Ecrivez ici" />
 
-      <button type="submit" disabled={!formValue}>sedundnes</button>
+      <button type="submit" disabled={!formValue}> 🕊️ </button>
 
       <a href={fileics} className="icslink">generate ics file</a>
 

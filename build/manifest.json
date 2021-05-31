@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "short_name": "Docto Chatbot",
+  "name": "Doctolib Chat Bot",
+  "version": "1.0",
+  "action": {
+        "default_popup": "popup.html",
+        "default_icon": "/public/Doctolib_icon.png"
+  },
+  "icons": {
+    "16": "/Doctolib_icon.png",
+    "32": "/Doctolib_icon.png",
+    "48": "/Doctolib_icon.png",
+    "128": "/Doctolib_icon.png"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab"
+  ]
+}
