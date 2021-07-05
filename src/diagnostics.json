@@ -1,0 +1,98 @@
+{
+    "symptoms": [
+        {
+            "id": 1,
+            "name": "Migraine",
+            "keywords": ["migraine", "tete", "tête", "mal de tête"]
+        },
+        {
+            "id": 2,
+            "name": "Mal de ventre",
+            "keywords": ["mal de ventre", "mal au ventre", "ventre"]
+        },
+        {
+            "id": 3,
+            "name": "Nausée",
+            "keywords": ["nausée", "vertige", "étourdissement", "équilibre"]
+        },
+        {
+            "id": 4,
+            "name": "Fatigue",
+            "keywords": ["fatigue", "sommeil"]
+        },
+        {
+            "id": 5,
+            "name": "Fièvre",
+            "keywords": ["fièvre", "fatigue", "chaud", "froid"]
+        },
+        {
+            "id": 6,
+            "name": "Vue floue",
+            "keywords": ["vue", "vue floue", "dmla"]
+        },
+        {
+            "id": 7,
+            "name": "Fracture",
+            "keywords": ["fracture", "os", "cassé", "os cassé", "crac"]
+        },
+        {
+            "id": 8,
+            "name": "Vomissements",
+            "keywords": ["vomir", "vomissements"]
+        },
+        {
+            "id": 9,
+            "name": "Toux",
+            "keywords": ["toux", "tousser"]
+        }
+    ],
+    "diseases": [
+        {
+            "id": 1,
+            "name": "Gastro-entérite",
+            "symptoms": [2, 3, 4, 5]
+        },
+        {
+            "id": 2,
+            "name": "Problème ophtalmologique",
+            "symptoms": [1, 3, 4, 6, 8]
+        },
+        {
+            "id": 3,
+            "name": "Angine",
+            "symptoms": [4, 9]
+        },
+        {
+            "id": 4,
+            "name": "Grippe",
+            "symptoms": [1, 2, 3, 4, 5, 8, 9]
+        },
+        {
+            "id": 5,
+            "name": "Fracture",
+            "symptoms": [7]
+        }
+    ],
+    "doctors":[
+        {
+            "id": 1,
+            "name": "Médecin Généraliste",
+            "diseases": [-1]
+        },
+        {
+            "id": 2,
+            "name": "Urgences",
+            "diseases": [5]
+        },
+        {
+            "id": 3,
+            "name": "Gastro-entérologue",
+            "diseases": [1]
+        },
+        {
+            "id": 4,
+            "name": "Ophtalmologiste",
+            "diseases": [2]
+        }
+    ]
+}
