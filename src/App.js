@@ -49,7 +49,7 @@ function ChatRoom() {
     await messages.push({
       text: formValue,
       whom: "received"
-    })
+    });
     
     /* Push la réponse du bot dans l'array de messages */
     messages.push({
@@ -90,7 +90,7 @@ function ChatMessage(props) {
   const { whom } = props.message;
 
   return (<>
-    <div className={`message ${whom}`}>
+    <div className={`message ${whom}`}> 
       <p>{text}</p>
     </div>
   </>)
