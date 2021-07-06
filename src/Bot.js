@@ -1,3 +1,5 @@
+import { tree_answer, init_tree } from './decision_tree.js';
+
 function GenerateIcs(doctor) {
   var element = document.createElement('a');
   element.setAttribute('href','data:text/plain;charset=utf-8, ' + encodeURIComponent('BEGIN:VCALENDAR\n' +
@@ -38,9 +40,32 @@ function GenerateIcs(doctor) {
   console.log('tests');
 }
 
-export function bot_answer(text) {
-    if (text === "test") {
-        return "works";
+var context = {
+    "mode": "default"
+}
+
+export function bot_answer(text)
+{
+    if (context.mode === "default")
+    {
+        // Try to change context.mode
+        if (text === "diag" || text === "diagnostic")
+        {
+            context.mode = "diagnostic"
+            return init_tree()
+        }
+        if (text === "test")
+        {
+            return "works";
+        }
+        return "not test";
     }
-    return "not test";
+    else if (context.mode === "diagnostic")
+    {
+        return tree_answer(text)
+    }
+    else
+    {
+        return "Undefined mode, read the doc please 🤓"
+    }
 }
