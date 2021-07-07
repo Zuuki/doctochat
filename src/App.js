@@ -1,6 +1,7 @@
 import './App.css';
 import { bot_answer } from './Bot.js';
 import doctoLogo from "./images/Doctolib_logo.png"
+//import fileics from "./event.ics"
 import React, { useRef, useState } from 'react';
 
 
@@ -85,9 +86,12 @@ function ChatRoom() {
 function ChatMessage(props) {
   const { text } = props.message;
   const { whom } = props.message;
+  const img = whom === "sent" ? 'user.png' : 'user.png';
+  const imgClass = whom === "sent" ? 'botpic' : 'userpic'
 
   return (<>
-    <div className={`message ${whom}`}> 
+    <div className={`message ${whom}`}>
+      <img class={imgClass} src={img} />
       <p>{text}</p>
     </div>
   </>)

@@ -1,3 +1,4 @@
+import deburr from 'lodash';
 
 /*
     Example:
@@ -29,21 +30,71 @@
         ]
     }
 */
+
 const diagnostics_data = require('./diagnostics.json');
 
 // List[Symptom]
 var picked_symptoms = []
 
 
-// Returns the symptom matching the name 'symptom_name'
+// Process the levenshtein distance between two strings
+// 'input': string
 // 'symptom_name': string
+// Returns: int
+function levenshtein(input, symptom) {
+    // First get rid of the accents or strange characters
+    var clean_input = deburr(input)
+    var clean_symptom = deburr(symptom)
+
+    // Create the substitution matrix
+    var sub = new Array()
+    for (var i = 0; i < clean_input.length; i++) {
+        var temp = new Array();
+        for (var j = 0; j < clean_symptom.length; j++)
+            temp.push(clean_input[i] === clean_symptom[j] ? 0 : 1)
+        sub.push(temp)        
+    }
+
+    // Create the levenshtein matrix
+    var mat = new Array();
+    for (var i = 0; i < clean_input.length + 1; i++) {
+        var temp = new Array();
+        for (var j = 0; j < clean_symptom.length + 1; j++) {
+            if (i == 0)
+                temp.push(j)
+            else if (j == 0)
+                temp.push(i)
+            else
+                temp.push(0)
+        }
+        mat.push(temp)
+    }
+
+    // Calculate the levenshtein matrix
+    for (var i = 1; i < clean_input.length + 1; i++) {
+        for (var j = 1; j < clean_symptom.length + 1; j++) {
+            mat[i][j] = Math.min(Math.min(mat[i - 1][j] + 1, mat[i][j - 1] + 1), mat[i - 1][j - 1] + sub[i - 1][j - 1])
+        }
+    }
+
+    // Return the levenshtein distance
+    return mat[clean_input.length][clean_symptom.length];
+}
+
+// Returns the symptom matching the name 'symptom_name' having a maximum of 'leven_max' levenshtein distance 
+// 'symptom_name': string
+// 'leven_max': int
 // Returns: Symptom or null
-function get_symptom_from_name(symptom_name)
+function get_symptom_from_name(symptom_name, leven_max)
 {
     var symptoms = diagnostics_data["symptoms"]
     for (var i = 0; i < symptoms.length; i++)
         if (symptoms[i].keywords.includes(symptom_name))
             return symptoms[i]
+        for (var j = 0; j < symptoms[i].keywords.length; j++)
+            if (levenshtein(symptom_name, symptoms[i].keywords[j]) < leven_max)
+                return symptoms[i]
+        
     
     return null
 }
@@ -217,7 +268,7 @@ export function tree_answer(input)
         return complete_tree(diseases)
     }
     
-    var symptom = get_symptom_from_name(input)
+    var symptom = get_symptom_from_name(input, 3)
     if (symptom == null)
         return "Nous ne connaissons pas ce symptôme"
     

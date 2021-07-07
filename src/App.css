@@ -93,6 +93,8 @@ input {
   width: 100%;
 }
 
+
+
 main {
   border-left: 2px solid black;
   display: flex;
@@ -126,11 +128,32 @@ p {
   margin-bottom: 0px;
   padding: 10px 20px;
   position: relative;
+  margin-left: 35px;
+  margin-right: 35px;
 }
 
 ul, li {
   list-style: none;
   text-align: left;
+}
+
+.botpic {
+  max-height: 25px;
+  max-width: 25px;
+  float: left;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.icslink {
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  padding: 12px 5px;
+  text-align: center;
+  text-decoration: none;
 }
 
 .logo_doctolib {
@@ -141,6 +164,7 @@ ul, li {
 
 .message {
   overflow-wrap: break-word;
+  position: relative;
 }
 
 .received p {
@@ -159,12 +183,11 @@ ul, li {
   text-align: left;
 }
 
-.icslink {
-  border: none;
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  padding: 12px 5px;
-  text-align: center;
-  text-decoration: none;
+.userpic {
+  max-height: 25px;
+  max-width: 25px;
+  float: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
