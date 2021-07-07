@@ -28,6 +28,7 @@
         ]
     }
 */
+import context from './Bot.js'
 
 const diagnostics_data = require('./diagnostics.json');
 
@@ -184,18 +185,24 @@ function complete_tree(diseases)
 {
     var answer = []
     
-    if (diseases.length == 1)
+    if (diseases.length == 1) {
         answer.push(`Vous avez probablement le problème: ${diseases[0].name}`)
-    else if (diseases.length <= 5)
-    {
-        answer.push("Il est possible que vous ayez un des problèmes suivants:")
-        for (var i = 0; i < diseases.length; i++)
-            answer.push(`- ${diseases[i].name}`)
     }
-    
+    else if (diseases.length <= 5) {
+        answer.push("Il est possible que vous ayez un des problèmes suivants:")
+        answer.push("")
+        for (var i = 0; i < diseases.length; i++) {
+            answer.push(`- ${diseases[i].name}`)
+        }
+    }
+    answer.push("")
+
     var doctor = get_doctor_from_diseases(diseases)
     answer.push(`Nous vous conseillons de consulter:`)
+    answer.push("")
     answer.push(`${doctor.name}`)
+    context.mode = "done"
+    context.name = doctor.name
     return answer
 }
 
@@ -246,6 +253,7 @@ function suggest_symptoms(diseases)
 function symptoms_suggestion_to_string(symptoms)
 {
     var answer = ["Réponse enregistrée. Symptômes suggérés:"]
+    answer.push("")
     for (var i = 0; i < symptoms.length; i++)
         answer.push(`- ${symptoms[i].name}`)
     
@@ -266,6 +274,7 @@ export function init_tree(text)
         return "La base de données des diagnostics est vide"
     
     var answer = ["Quels sont vos symptômes ?"]
+    answer.push("")
     answer.push(`- ${symptoms[0].name}`)
     for (var i = 1; i < 3; i++) {
         if (i == 2)
@@ -289,7 +298,7 @@ export function tree_answer(input)
     
     var symptom = get_symptom_from_name(input, 3)
     if (symptom == null)
-        return "Nous ne connaissons pas ce symptôme"
+        return ["Nous ne connaissons pas ce symptôme"]
     
     picked_symptoms.push(symptom)
 

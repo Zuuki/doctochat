@@ -41,8 +41,11 @@ function GenerateIcs(doctor) {
 }
 
 var context = {
-    "mode": "default"
+    "mode": "default",
+    "name": null
 }
+
+export default context;
 
 export function bot_answer(text)
 {
@@ -56,16 +59,31 @@ export function bot_answer(text)
         }
         if (text === "test")
         {
-            return "works";
+            return ["works"];
         }
-        return "not test";
-    }
-    else if (context.mode === "diagnostic")
+        return ["not test"];
+    } else if (context.mode === "diagnostic")
     {
         return tree_answer(text)
+    } else if (context.mode === "done")
+    {
+        if (text === "oui" || text === "Oui") {
+            context.mode = "link";
+            return ["Veuillez entrer la ville où vous souhaitez chercher un rendez-vous"]
+        } else if (text === "non" || text === "Non") {
+            return ["Merci d'avoir utilisé notre chatbot, à bientôt !"]
+        } else {
+            return ["Nous n'avons pas compris votre choix"]
+        }
+    } else if (context.mode === "link") {
+        var city = text.replace(/\s/g, '-')
+        var doctor = context.name.replace(/\s/g, '-')
+        doctor = doctor.toLowerCase()
+        doctor = doctor.replace(/[éè]/g, 'e')
+        return ["Cliquez sur le lien ci-dessous pour accéder à votre recherche", "", `https://www.doctolib.fr/${doctor}/${city}`, "Merci d'avoir utilisé le chatbot Doctolib !"]
     }
     else
     {
-        return "Undefined mode, read the doc please 🤓"
+        return ["Undefined mode, read the doc please"]
     }
 }
