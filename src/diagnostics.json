@@ -3,12 +3,12 @@
         {
             "id": 1,
             "name": "Migraine",
-            "keywords": ["migraine", "tete", "tête", "mal de tête"]
+            "keywords": ["migraine", "tête", "mal de tête"]
         },
         {
             "id": 2,
             "name": "Mal de ventre",
-            "keywords": ["mal de ventre", "mal au ventre", "ventre"]
+            "keywords": ["mal de ventre", "mal au ventre", "ventre", "constipation", "diarhée"]
         },
         {
             "id": 3,
@@ -43,7 +43,32 @@
         {
             "id": 9,
             "name": "Toux",
-            "keywords": ["toux", "tousser"]
+            "keywords": ["toux", "tousser", "mal de gorge"]
+        },
+        {
+            "id": 10,
+            "name": "Douleur musculaire",
+            "keywords": ["douleur musculaire", "muscle", "tendinite"]
+        },
+        {
+            "id": 11,
+            "name": "Mal de dos",
+            "keywords": ["mal au dos", "dos bloqué", "douleur au dos"]
+        },
+        {
+            "id": 12,
+            "name": "Crampe",
+            "keywords": ["crampe", "élongation", "contracture"]
+        },
+        {
+            "id": 13,
+            "name": "Aphte",
+            "keywords": ["apthe", "boule dans la bouche"]
+        },
+        {
+            "id": 14,
+            "name": "Torticolis",
+            "keywords": ["torticolis", "mal à la nuque", "raideur de la nuque", "nuque endolorie", "nuque"]
         }
     ],
     "diseases": [

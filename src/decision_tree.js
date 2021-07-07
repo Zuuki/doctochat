@@ -1,5 +1,3 @@
-import deburr from 'lodash';
-
 /*
     Example:
     {
@@ -42,9 +40,9 @@ var picked_symptoms = []
 // 'symptom_name': string
 // Returns: int
 function levenshtein(input, symptom) {
-    // First get rid of the accents or strange characters
-    var clean_input = deburr(input)
-    var clean_symptom = deburr(symptom)
+    // First put everything in caps
+    var clean_input = input.toUpperCase()
+    var clean_symptom = symptom.toUpperCase()
 
     // Create the substitution matrix
     var sub = new Array()
@@ -57,13 +55,13 @@ function levenshtein(input, symptom) {
 
     // Create the levenshtein matrix
     var mat = new Array();
-    for (var i = 0; i < clean_input.length + 1; i++) {
+    for (var k = 0; k < clean_input.length + 1; k++) {
         var temp = new Array();
-        for (var j = 0; j < clean_symptom.length + 1; j++) {
-            if (i == 0)
-                temp.push(j)
-            else if (j == 0)
-                temp.push(i)
+        for (var l = 0; l < clean_symptom.length + 1; l++) {
+            if (k == 0)
+                temp.push(l)
+            else if (l == 0)
+                temp.push(k)
             else
                 temp.push(0)
         }
@@ -76,7 +74,6 @@ function levenshtein(input, symptom) {
             mat[i][j] = Math.min(Math.min(mat[i - 1][j] + 1, mat[i][j - 1] + 1), mat[i - 1][j - 1] + sub[i - 1][j - 1])
         }
     }
-
     // Return the levenshtein distance
     return mat[clean_input.length][clean_symptom.length];
 }
@@ -88,15 +85,34 @@ function levenshtein(input, symptom) {
 function get_symptom_from_name(symptom_name, leven_max)
 {
     var symptoms = diagnostics_data["symptoms"]
-    for (var i = 0; i < symptoms.length; i++)
+    var closest_symptoms = new Array()
+    for (var i = 0; i < symptoms.length; i++) {
         if (symptoms[i].keywords.includes(symptom_name))
             return symptoms[i]
-        for (var j = 0; j < symptoms[i].keywords.length; j++)
-            if (levenshtein(symptom_name, symptoms[i].keywords[j]) < leven_max)
-                return symptoms[i]
-        
+        for (var j = 0; j < symptoms[i].keywords.length; j++) {
+            var temp = levenshtein(symptom_name, symptoms[i].keywords[j]);
+            if (temp < leven_max)
+                closest_symptoms.push({
+                    distance: temp,
+                    symptom: symptoms[i]
+                });
+        }
+    }
+
+
+    var min = Infinity;
+    var indexRes = 0;
+    for (var i = 0; i < closest_symptoms.length; i++) {
+        if (min > closest_symptoms[i].distance) {
+            min = closest_symptoms[i].distance
+            indexRes = i
+        }
+    }
     
-    return null
+    if (min == Infinity)
+        return null
+    console.log(symptoms[indexRes])
+    return closest_symptoms[indexRes].symptom
 }
 
 // Returns the symptom matching the id 'symptom_id'
@@ -166,19 +182,20 @@ function get_doctor_from_diseases(diseases)
 // Returns: string
 function complete_tree(diseases)
 {
-    var answer = ""
+    var answer = []
     
     if (diseases.length == 1)
-        answer = `Vous avez probablement le problème: ${diseases[0].name}`
+        answer.push(`Vous avez probablement le problème: ${diseases[0].name}`)
     else if (diseases.length <= 5)
     {
-        answer = "Il est possible que vous ayez un des problèmes suivants:"
+        answer.push("Il est possible que vous ayez un des problèmes suivants:")
         for (var i = 0; i < diseases.length; i++)
-            answer += `\n- ${diseases[i].name}`
+            answer.push(`- ${diseases[i].name}`)
     }
     
     var doctor = get_doctor_from_diseases(diseases)
-    answer += `\n Nous vous conseillons de consulter:\n${doctor.name}`
+    answer.push(`Nous vous conseillons de consulter:`)
+    answer.push(`${doctor.name}`)
     return answer
 }
 
@@ -228,12 +245,12 @@ function suggest_symptoms(diseases)
 // Returns: string
 function symptoms_suggestion_to_string(symptoms)
 {
-    var answer = "Réponse enregistrée. Symptômes suggérés:"
+    var answer = ["Réponse enregistrée. Symptômes suggérés:"]
     for (var i = 0; i < symptoms.length; i++)
-        answer += ` \n- ${symptoms[i].name}`
+        answer.push(`- ${symptoms[i].name}`)
     
-            
-    answer += "\n\nPour terminer ce diagnostic, vous pouvez répondre 'stop' à tout moment."
+    answer.push("")        
+    answer.push("Pour terminer ce diagnostic, vous pouvez répondre 'stop' à tout moment.")
     return answer
 }
 
@@ -248,12 +265,14 @@ export function init_tree(text)
     if (nb_symptoms == 0)
         return "La base de données des diagnostics est vide"
     
-    var answer = "Quels sont vos symptômes ?"
-    answer += ` ${symptoms[0].name}\n`
-    for (var i = 1; i < 3; i++)
-        answer += `, ${symptoms[i].name}`
-    answer += "..."
-    
+    var answer = ["Quels sont vos symptômes ?"]
+    answer.push(`- ${symptoms[0].name}`)
+    for (var i = 1; i < 3; i++) {
+        if (i == 2)
+            answer.push(`- ${symptoms[i].name} ...`)
+        else
+            answer.push(`- ${symptoms[i].name}`)
+    }
     return answer
 }
 

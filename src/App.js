@@ -7,16 +7,16 @@ import React, { useRef, useState } from 'react';
 
 /* Initialize the messages array with the welcoming message and the first choice" */
 var messages = [{
-  text: "Bienvenue sur le Chat Bot Doctolib",
+  text: ["Bienvenue sur le Chat Bot Doctolib"],
   whom: "sent"
 }, {
-  text: "Voulez-vous:",
+  text: ["Voulez-vous:"],
   whom: "sent"
 }, {
-  text: "- 1. Exporter votre calendrier de rendez-vous sous le format .ics ?",
+  text: ["- 1. Exporter votre calendrier de rendez-vous sous le format .ics ?"],
   whom: "sent"
 }, {
-  text: "- 2. Chercher quel practicien vous devriez consulter selon vos symptômes ?",
+  text: ["- 2. Chercher quel practicien vous devriez consulter selon vos symptômes ?"],
   whom: "sent"
 }];
 
@@ -47,7 +47,7 @@ function ChatRoom() {
 
     /* Attends un message de l'utilisateur et push le message dans l'array de messages */
     await messages.push({
-      text: formValue,
+      text: [formValue],
       whom: "received"
     });
     
@@ -84,17 +84,34 @@ function ChatRoom() {
 }
 
 function ChatMessage(props) {
-  const { text } = props.message;
-  const { whom } = props.message;
+  const { text } = props.message
+  const { whom } = props.message
   const img = whom === "sent" ? 'user.png' : 'user.png';
   const imgClass = whom === "sent" ? 'botpic' : 'userpic'
 
   return (<>
     <div className={`message ${whom}`}>
       <img class={imgClass} src={img} />
-      <p>{text}</p>
+      <p><PrettyPrint text={text}/></p>
     </div>
   </>)
 }
+
+function PrettyPrint(text) {
+  var temp = text.text
+  console.log(temp)
+  console.log(temp.length)
+  if (temp.length == 0)
+    return(<></>)
+  if (temp.length == 1)
+    return (<>
+      {temp[0]}
+    </>)
+  return(<>
+    {temp[0]} <br/> <PrettyPrint text={temp.slice(1)} />
+  </>)
+}
+
+
 
 export default App;
