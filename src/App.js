@@ -98,7 +98,7 @@ function ChatMessage(props) {
 
   return (<>
     <div className={`message ${whom}`}>
-      <img class={imgClass} src={img} />
+      <img class={imgClass} src={img} alt=""/>
       <p><PrettyPrint text={text}/></p>
     </div>
   </>)
@@ -106,9 +106,9 @@ function ChatMessage(props) {
 
 function PrettyPrint(text) {
   var temp = text.text
-  if (temp.length == 0)
+  if (temp.length === 0)
     return(<></>)
-  if (temp.length == 1)
+  if (temp.length === 1)
     return (<>
       {temp[0]}
     </>)

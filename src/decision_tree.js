@@ -28,7 +28,6 @@
         ]
     }
 */
-import { pick } from 'lodash';
 import context from './Bot.js'
 
 const diagnostics_data = require('./diagnostics.json');
@@ -46,23 +45,25 @@ function levenshtein(input, symptom) {
     var clean_input = input.toUpperCase()
     var clean_symptom = symptom.toUpperCase()
 
+    var temp = null
+
     // Create the substitution matrix
-    var sub = new Array()
+    var sub = []
     for (var i = 0; i < clean_input.length; i++) {
-        var temp = new Array();
+        temp = [];
         for (var j = 0; j < clean_symptom.length; j++)
             temp.push(clean_input[i] === clean_symptom[j] ? 0 : 1)
         sub.push(temp)        
     }
 
     // Create the levenshtein matrix
-    var mat = new Array();
+    var mat = []
     for (var k = 0; k < clean_input.length + 1; k++) {
-        var temp = new Array();
+        temp = [];
         for (var l = 0; l < clean_symptom.length + 1; l++) {
-            if (k == 0)
+            if (k === 0)
                 temp.push(l)
-            else if (l == 0)
+            else if (l === 0)
                 temp.push(k)
             else
                 temp.push(0)
@@ -71,9 +72,9 @@ function levenshtein(input, symptom) {
     }
 
     // Calculate the levenshtein matrix
-    for (var i = 1; i < clean_input.length + 1; i++) {
-        for (var j = 1; j < clean_symptom.length + 1; j++) {
-            mat[i][j] = Math.min(Math.min(mat[i - 1][j] + 1, mat[i][j - 1] + 1), mat[i - 1][j - 1] + sub[i - 1][j - 1])
+    for (var x = 1; x < clean_input.length + 1; x++) {
+        for (var y = 1; y < clean_symptom.length + 1; y++) {
+            mat[x][y] = Math.min(Math.min(mat[x - 1][y] + 1, mat[x][y - 1] + 1), mat[x - 1][y - 1] + sub[x - 1][y - 1])
         }
     }
     // Return the levenshtein distance
@@ -87,7 +88,7 @@ function levenshtein(input, symptom) {
 function get_symptom_from_name(symptom_name, leven_max)
 {
     var symptoms = diagnostics_data["symptoms"]
-    var closest_symptoms = new Array()
+    var closest_symptoms = []
     for (var i = 0; i < symptoms.length; i++) {
         if (symptoms[i].keywords.includes(symptom_name))
             return symptoms[i]
@@ -104,16 +105,15 @@ function get_symptom_from_name(symptom_name, leven_max)
 
     var min = Infinity;
     var indexRes = 0;
-    for (var i = 0; i < closest_symptoms.length; i++) {
-        if (min > closest_symptoms[i].distance) {
-            min = closest_symptoms[i].distance
-            indexRes = i
+    for (var k = 0; k < closest_symptoms.length; k++) {
+        if (min > closest_symptoms[k].distance) {
+            min = closest_symptoms[k].distance
+            indexRes = k
         }
     }
     
-    if (min == Infinity)
+    if (min === Infinity)
         return null
-    console.log(symptoms[indexRes])
     return closest_symptoms[indexRes].symptom
 }
 
@@ -124,7 +124,7 @@ function get_symptom_from_id(symptom_id)
 {
     var symptoms = diagnostics_data["symptoms"]
     for (var i = 0; i < symptoms.length; i++)
-        if (symptoms[i].id == symptom_id)
+        if (symptoms[i].id === symptom_id)
             return symptoms[i]
     
     return null
@@ -173,7 +173,7 @@ function get_doctor_from_diseases(diseases)
                 if (!selected_doctors.includes(doctors[i]))
                     selected_doctors.push(doctors[i])
     
-    if (selected_doctors.length != 1)
+    if (selected_doctors.length !== 1)
         // "Médecin Généraliste"
         return doctors[0]
     return selected_doctors[0]
@@ -186,7 +186,7 @@ function complete_tree(diseases)
 {
     var answer = []
     
-    if (diseases.length == 1) {
+    if (diseases.length === 1) {
         answer.push(`Vous avez probablement le problème: ${diseases[0].name}`)
     }
     else if (diseases.length <= 5) {
@@ -203,7 +203,7 @@ function complete_tree(diseases)
     answer.push("")
     answer.push(`${doctor.name}`)
     context.mode = "done"
-    context.name = doctor.name
+    context.doctor_name = doctor.name
     return answer
 }
 
@@ -218,7 +218,7 @@ function suggest_symptoms(diseases)
 
     function disease_contains_symptom(disease, x)
     {
-        var found = disease.symptoms.find(elt => elt == x)
+        var found = disease.symptoms.find(elt => elt === x)
         if (found)
             return true
         return false
@@ -240,10 +240,10 @@ function suggest_symptoms(diseases)
     }
 
     var differenciating_symptoms = []
-    for (var i = 0; i < diseases.length; i++)
-        for (var j = 0; j < diseases[i].symptoms.length; j++)
-            if (!not_differenciating_symptoms.includes(diseases[i].symptoms[j]))
-                differenciating_symptoms.push(diseases[i].symptoms[j])
+    for (var x = 0; x < diseases.length; x++)
+        for (var y = 0; y < diseases[x].symptoms.length; y++)
+            if (!not_differenciating_symptoms.includes(diseases[x].symptoms[y]))
+                differenciating_symptoms.push(diseases[x].symptoms[y])
     
     return differenciating_symptoms.map(id => get_symptom_from_id(id))
 }
@@ -272,14 +272,14 @@ export function init_tree(text)
     var symptoms = diagnostics_data["symptoms"]
     var nb_symptoms = Math.min(symptoms.length, 3)
 
-    if (nb_symptoms == 0)
+    if (nb_symptoms === 0)
         return "La base de données des diagnostics est vide"
     
     var answer = ["Quels sont vos symptômes ?"]
     answer.push("")
     answer.push(`- ${symptoms[0].name}`)
     for (var i = 1; i < 3; i++) {
-        if (i == 2)
+        if (i === 2)
             answer.push(`- ${symptoms[i].name} ...`)
         else
             answer.push(`- ${symptoms[i].name}`)
@@ -292,9 +292,10 @@ export function init_tree(text)
 // Returns: string
 export function tree_answer(input)
 {
-    if (input.toUpperCase() == "STOP")
+    var diseases = null
+    if (input.toUpperCase() === "STOP")
     {
-        var diseases = get_diseases_from_symptoms(picked_symptoms)
+        diseases = get_diseases_from_symptoms(picked_symptoms)
         return complete_tree(diseases)
     }
     
@@ -304,8 +305,8 @@ export function tree_answer(input)
     
     picked_symptoms.push(symptom)
 
-    var diseases = get_diseases_from_symptoms(picked_symptoms)
-    if (diseases.length == 1)
+    diseases = get_diseases_from_symptoms(picked_symptoms)
+    if (diseases.length === 1)
         return complete_tree(diseases)
     
     var suggested_symptoms = suggest_symptoms(diseases)

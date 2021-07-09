@@ -9,8 +9,8 @@ function GenerateIcs(doctor) {
 'SUMMARY:rendez-vous avec ' + doctor +
 '\nDTSTART;TZID=America/New_York:20130802T103400\n' +
 'DTEND;TZID=America/New_York:20130802T110400\n' +
-'LOCATION:1000 Broadway Ave.\, Brooklyn\n' +
-'DESCRIPTION: Access-A-Ride to 900 Jay St.\, Brooklyn\n' +
+'LOCATION:1000 Broadway Ave., Brooklyn\n' +
+'DESCRIPTION: Access-A-Ride to 900 Jay St., Brooklyn\n' +
 'STATUS:CONFIRMED\n' +
 'SEQUENCE:3\n' +
 'BEGIN:VALARM\n' +
@@ -23,8 +23,8 @@ function GenerateIcs(doctor) {
 'SUMMARY:Access-A-Ride Pickup\n' +
 'DTSTART;TZID=America/New_York:20130802T200000\n' +
 'DTEND;TZID=America/New_York:20130802T203000\n' +
-'LOCATION:900 Jay St.\, Brooklyn\n' +
-'DESCRIPTION: Access-A-Ride to 1000 Broadway Ave.\, Brooklyn\n' +
+'LOCATION:900 Jay St., Brooklyn\n' +
+'DESCRIPTION: Access-A-Ride to 1000 Broadway Ave., Brooklyn\n' +
 'STATUS:CONFIRMED\n' +
 'SEQUENCE:3\n' +
 'BEGIN:VALARM\n' +
@@ -42,7 +42,7 @@ function GenerateIcs(doctor) {
 
 var context = {
     "mode": "default",
-    "name": null
+    "doctor_name": null
 }
 
 export default context;
@@ -77,13 +77,13 @@ export function bot_answer(text)
             return ["Veuillez entrer la ville où vous souhaitez chercher un rendez-vous"]
         } else if (text === "non" || text === "Non") {
             context.mode = "end"
-            return ["Merci d'avoir utilisé le chatbot Doctolib !", "Si vous voulez effectuer un autre diagnostique, écrivez diagnostic"]
+            return ["Merci d'avoir utilisé le chatbot Doctolib !", "Si vous voulez effectuer un autre diagnostic, écrivez diagnostic"]
         } else {
             return ["Nous n'avons pas compris votre choix"]
         }
     } else if (context.mode === "link") {
         var city = text.replace(/\s/g, '-')
-        var doctor = context.name.replace(/\s/g, '-')
+        var doctor = context.doctor_name.replace(/\s/g, '-')
         doctor = doctor.toLowerCase()
         doctor = doctor.replace(/[éè]/g, 'e')
         context.mode = "end"
