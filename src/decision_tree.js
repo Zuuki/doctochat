@@ -28,6 +28,7 @@
         ]
     }
 */
+import { pick } from 'lodash';
 import context from './Bot.js'
 
 const diagnostics_data = require('./diagnostics.json');
@@ -267,6 +268,7 @@ function symptoms_suggestion_to_string(symptoms)
 // Returns: string
 export function init_tree(text)
 {
+    picked_symptoms = []
     var symptoms = diagnostics_data["symptoms"]
     var nb_symptoms = Math.min(symptoms.length, 3)
 

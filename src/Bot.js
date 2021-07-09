@@ -52,7 +52,7 @@ export function bot_answer(text)
     if (context.mode === "default")
     {
         // Try to change context.mode
-        if (text === "diag" || text === "diagnostic")
+        if (text === "diag" || text === "diagnostic" || text === "2")
         {
             context.mode = "diagnostic"
             return init_tree()
@@ -62,6 +62,11 @@ export function bot_answer(text)
             return ["works"];
         }
         return ["not test"];
+    } else if (context.mode === "end") {
+        if (text === "diagnostic") {
+            context.mode = "diagnostic"
+            return init_tree()
+        } 
     } else if (context.mode === "diagnostic")
     {
         return tree_answer(text)
@@ -71,7 +76,8 @@ export function bot_answer(text)
             context.mode = "link";
             return ["Veuillez entrer la ville où vous souhaitez chercher un rendez-vous"]
         } else if (text === "non" || text === "Non") {
-            return ["Merci d'avoir utilisé notre chatbot, à bientôt !"]
+            context.mode = "end"
+            return ["Merci d'avoir utilisé le chatbot Doctolib !", "Si vous voulez effectuer un autre diagnostique, écrivez diagnostic"]
         } else {
             return ["Nous n'avons pas compris votre choix"]
         }
@@ -80,10 +86,11 @@ export function bot_answer(text)
         var doctor = context.name.replace(/\s/g, '-')
         doctor = doctor.toLowerCase()
         doctor = doctor.replace(/[éè]/g, 'e')
-        return ["Cliquez sur le lien ci-dessous pour accéder à votre recherche", "", `https://www.doctolib.fr/${doctor}/${city}`, "Merci d'avoir utilisé le chatbot Doctolib !"]
+        context.mode = "end"
+        return ["Cliquez sur le lien ci-dessous pour accéder à votre recherche", "", `https://www.doctolib.fr/${doctor}/${city}`, "Merci d'avoir utilisé le chatbot Doctolib !", "Si vous voulez effectuer un autre diagnostique, écrivez diagnostique"]
     }
     else
     {
-        return ["Undefined mode, read the doc please"]
+        return ["Nous n'avons pas compris votre demande, veuillez réeassayer"]
     }
 }

@@ -112,21 +112,20 @@ function PrettyPrint(text) {
     return (<>
       {temp[0]}
     </>)
-  if (context.mode === "link") {
-    console.log(temp[1])
-    if (temp.length > 2) {
-      if (temp[1].includes("doctolib")){
-        return <>
-          {temp[0]}
-          <br/>
-          <a href={temp[1]}>{temp[1]}</a> 
-          <br/>
-          <br/>
-          {temp[2]}
-        </>
-      }
-    }
+  if (temp[1].includes("https://www.doctolib.fr")) {
+    return <>
+      {temp[0]}
+        <br/>
+      <a href={temp[1]}>{temp[1]}</a> 
+        <br/>
+        <br/>
+      {temp[2]}
+        <br/>
+        <br/>
+      {temp[3]}
+    </>
   }
+
   return(<>
     {temp[0]} <br/> <PrettyPrint text={temp.slice(1)} />
   </>)
