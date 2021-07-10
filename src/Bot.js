@@ -1,7 +1,10 @@
 import { tree_answer, init_tree } from './decision_tree.js';
 
+/* Generates an .ics file with every rendez-vous
+   desc is an array containing the description of each rendez-vous
+   time is an array conatining the date and time of each rendez-vous with this format YYYYMMDDHHmm
+   /!\ desc and time must have the same length /!\ */
 function GenerateIcs(desc, time) {
-  //const ics = require('./dist');
   let ics = require("ics")
   let events = [];
   for (let i = 0; i < desc.length; i++) {
