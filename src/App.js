@@ -93,7 +93,7 @@ function ChatRoom() {
 function ChatMessage(props) {
   const { text } = props.message
   const { whom } = props.message
-  const img = whom === "sent" ? 'user.png' : 'user.png';
+  const img = whom === "sent" ? 'botpic.png' : 'user.png';
   const imgClass = whom === "sent" ? 'botpic' : 'userpic'
 
   return (<>
