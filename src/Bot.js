@@ -77,7 +77,7 @@ export function bot_answer(text)
         doctor = doctor.toLowerCase()
         doctor = doctor.replace(/[éè]/g, 'e')
         context.mode = "end"
-        return ["Cliquez sur le lien ci-dessous pour accéder à votre recherche", "", `https://www.doctolib.fr/${doctor}/${city}`, "Merci d'avoir utilisé le chatbot Doctolib !", "Si vous voulez effectuer un autre diagnostique, écrivez diagnostique"]
+        return ["Cliquez sur le lien ci-dessous pour accéder à votre recherche", "", `https://www.doctolib.fr/${doctor}/${city}`, "Merci d'avoir utilisé le chatbot Doctolib !", "Si vous voulez effectuer un autre diagnostic, écrivez diagnostic"]
     }
     else
     {

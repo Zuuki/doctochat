@@ -116,7 +116,7 @@
         },
         {
             "id": 4,
-            "name": "Ophtalmologiste",
+            "name": "Ophtalmologue",
             "diseases": [2]
         }
     ]
