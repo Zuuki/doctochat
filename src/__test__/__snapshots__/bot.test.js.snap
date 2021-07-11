@@ -22,7 +22,7 @@ exports[`Should matches snapshot 1`] = `
         <img
           alt=""
           class="botpic"
-          src="user.png"
+          src="botpic.png"
         />
         <p>
           Bienvenue sur le Chat Bot Doctolib
@@ -34,7 +34,7 @@ exports[`Should matches snapshot 1`] = `
         <img
           alt=""
           class="botpic"
-          src="user.png"
+          src="botpic.png"
         />
         <p>
           Voulez-vous:
@@ -46,7 +46,7 @@ exports[`Should matches snapshot 1`] = `
         <img
           alt=""
           class="botpic"
-          src="user.png"
+          src="botpic.png"
         />
         <p>
           - 1. Exporter votre calendrier de rendez-vous sous le format .ics ?
@@ -58,7 +58,7 @@ exports[`Should matches snapshot 1`] = `
         <img
           alt=""
           class="botpic"
-          src="user.png"
+          src="botpic.png"
         />
         <p>
           - 2. Chercher quel practicien vous devriez consulter selon vos symptômes ?
