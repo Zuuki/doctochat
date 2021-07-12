@@ -49,14 +49,17 @@ export function bot_answer(text)
         if (text === "1")
         {
         	GenerateIcs(["rdv docto 1", "rdv docto 2"], ["202201151430", "202201160915"]);
-        	return ["Voici votre fichier ics contenant vos rendez-vous"];
+        	return ["Voici votre fichier ics contenant vos rendez-vous", "Pour effectuer un diagnostic, écrivez diagnostic"];
         }
         return ["not test"];
     } else if (context.mode === "end") {
         if (text === "diagnostic") {
             context.mode = "diagnostic"
             return init_tree()
-        } 
+        } else if (text === "1") {
+            context.mode = "default"
+            return bot_answer(text)
+        }
     } else if (context.mode === "diagnostic")
     {
         return tree_answer(text)
@@ -67,7 +70,7 @@ export function bot_answer(text)
             return ["Veuillez entrer la ville où vous souhaitez chercher un rendez-vous"]
         } else if (text === "non" || text === "Non") {
             context.mode = "end"
-            return ["Merci d'avoir utilisé le chatbot Doctolib !", "Si vous voulez effectuer un autre diagnostic, écrivez diagnostic"]
+            return ["Merci d'avoir utilisé le chatbot Doctolib !", "Si vous voulez effectuer un autre diagnostic, écrivez diagnostic", "Sinon si vous voulez exporter vos rendez vous sous format ics, tapez 1"]
         } else {
             return ["Nous n'avons pas compris votre choix"]
         }
