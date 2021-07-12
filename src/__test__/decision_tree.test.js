@@ -1,6 +1,5 @@
 import { tree_answer, init_tree } from "../decision_tree";
-import {cleanup} from "@testing-library/react"
-import { bot_answer } from "../Bot";
+import {cleanup} from "@testing-library/react";
 afterEach(cleanup)
 
 
@@ -33,7 +32,7 @@ it('should give the right disease from symptoms badly written (Probleme Ophtalmo
 it('should give the right doctor for "Grippe" disease (symptoms badly written)', () => {
     init_tree()
     const diagnostic = tree_answer("Vie flou")
-    expect(diagnostic).toContain("Ophtalmologiste")
+    expect(diagnostic).toContain("Ophtalmologue")
 })
 
 
